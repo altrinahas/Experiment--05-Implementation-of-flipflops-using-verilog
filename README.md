@@ -1,3 +1,5 @@
+## NAME:ALTRIN AHAS A
+## REFRENCE NUMBER:23011604
 # Experiment--05-Implementation-of-flipflops-using-verilog
 ### AIM: To implement all the flipflops using verilog and validating their functionality using their functional tables
 ### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
@@ -102,39 +104,131 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
+
+1)Create a New Project:
+
+Open Quartus and create a new project by selecting "File" > "New Project Wizard."
+Follow the wizard's instructions to set up your project, including specifying the project name, location, and target device (FPGA).
+2)Create a New Design File:
+
+Once the project is created, right-click on the project name in the Project Navigator and select "Add New File."
+Choose "Verilog HDL File" or "VHDL File," depending on your chosen hardware description language.
+3)Write the Combinational Logic Code:
+
+Open the newly created Verilog or VHDL file and write the code for your combinational logic.
+4)Compile the Project:
+
+To compile the project, click on "Processing" > "Start Compilation" in the menu.
+Quartus will analyze your code, synthesize it into a netlist, and perform optimizations based on your target FPGA device.
+5)Analyze and Fix Errors:
+
+If there are any errors or warnings during the compilation process, Quartus will display them in the Messages window.
+Review and fix any issues in your code if necessary.
+View the RTL diagram.
+6)Verification:
+
+Click on "File" > "New" > "Verification/Debugging Files" > "University Program VWF".
+Once Waveform is created Right Click on the Input/Output Panel > " Insert Node or Bus" > Click on Node Finder > Click On "List" > Select All.
+Give the Input Combinations according to the Truth Table and then simulate the Output Waveform.
 
 
 
-### PROGRAM 
-/*
-Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+### PROGRAM
+
+## SR-Flip Flop
+```
+module sr(S,R,clk,Q,Qbar);
+input S,R,clk;
+output reg Q;
+output reg Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge clk)
+begin
+Q=S|((~R)&Q);
+Qbar=R|((~S)&(Qbar));
+end
+endmodule
+```
+## JK Flip-Flop
+```
+module jkfp(J,K,clk,Q,Qbar);
+input J,K,clk;
+output reg Q;
+output reg Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge clk)
+begin
+Q=(J&(~Q))|((~K)&Q);
+Qbar=((~J)&(Qbar))|K&(~Qbar);
+end
+endmodule
+```
+## D-Flip Flop
+```
+module d(q,qbar,d1,clk);
+input d1,clk;
+output q,qbar;
+wire n1;
+wire n2;
+not(x,d1);
+nand(n1,clk,d1);
+nand(n2,clk,x);
+nand(q,n2,qbar);
+nand(qbar,n1,q);
+endmodule
+```
+## T-Flip Flop
+```
+module tff(t,qbar,q,clk);
+input t,clk;
+output q,qbar;
+wire n1,n2;
+nand(n1,t,clk,qbar);
+nand(n2,clk,t,q);
+nand(q,n1,qbar);
+nand(qbar,n2,q);
+endmodule
+```
+## RTL LOGIC FOR FLIPFLOPS
+
+## SR-Flip Flop
+![291246168-8251d47b-e6d4-4594-9d13-cc52780044a2](https://github.com/altrinahas/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145980038/a7310844-5d35-4e68-bcc6-e4daa4c13a0d)
 
 
+## JK Flip-Flop
+![291246269-71e8d027-3bbb-4355-9785-cc392e9739e9](https://github.com/altrinahas/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145980038/0d27903e-9460-4ca7-a7a1-188a1a5055d3)
 
 
+## D-Flip Flop
+![291246652-b38336da-66c8-43d2-ad12-29aad6ebdb12](https://github.com/altrinahas/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145980038/f8b7014b-771c-4f28-9891-9485c6a8a2f9)
+
+## T-Flip Flop
+
+![291246711-ed2d5929-f846-40e4-9bcb-e8709d6372f1](https://github.com/altrinahas/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145980038/7587df6a-4aba-4ad8-88cd-b827cb55178d)
 
 
-### RTL LOGIC FOR FLIPFLOPS 
+## TIMING DIGRAMS FOR FLIP FLOPS
+
+## SR-Flip FloP
+
+![291246370-b1109fc8-c3a9-4348-a524-e7bff71d090b](https://github.com/altrinahas/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145980038/206d740b-d6ed-4aee-abf0-0c991655e680)
+
+## JK Flip-FloP
+
+![291246546-8655ef59-2b19-4973-a175-73e21cb90931](https://github.com/altrinahas/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145980038/1101c7f5-168f-482e-b59f-f0b4261e3008)
 
 
+## D-Flip Flop
+
+![291246776-61873cf1-ff58-4f20-a195-9f209c8d850f](https://github.com/altrinahas/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145980038/198d236d-7b18-4ab0-8dfc-4bf9310e4b1b)
 
 
+## T-Flip Flop
+
+![291246841-ebdcb878-4aae-45bb-8108-f08ff8d80d3e](https://github.com/altrinahas/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145980038/69a8bc28-05d4-4cb7-901f-711de8cbd898)
 
 
-
-
-
-### TIMING DIGRAMS FOR FLIP FLOPS 
-
-
-
-
-
-
-
-
-### RESULTS 
+##  RESULTS
+By this we have verified the truth table of JK flip flop and SR flip flop  and d flip flop amd t flip flop using verilog
