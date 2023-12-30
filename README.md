@@ -1,4 +1,4 @@
-## NAME:ALTRIN AHAS A
+## NAME:ALTRIN AHAS A 
 ## REFRENCE NUMBER:23011604
 # Experiment--05-Implementation-of-flipflops-using-verilog
 ### AIM: To implement all the flipflops using verilog and validating their functionality using their functional tables
